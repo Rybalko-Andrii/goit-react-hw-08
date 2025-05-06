@@ -1,0 +1,14 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  gap: 8px;
+  overflow: hidden;
+}

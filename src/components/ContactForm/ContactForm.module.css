@@ -1,0 +1,47 @@
+.fieldWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form {
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+}
+
+.input {
+  width: 100%;
+  max-width: 285px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid white;
+  outline: unset;
+}
+.error {
+  position: absolute;
+  color: red;
+  margin-top: 8px;
+  top: 100%;
+}
+
+.button {
+  color: rgb(135, 233, 90);
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid rgb(135, 233, 90);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  border: 2px solid rgb(224, 73, 73);
+  background-color: grey;
+}
