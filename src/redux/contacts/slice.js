@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf, createSelector } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./oparations";
 
 const initialState = {

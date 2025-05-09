@@ -1,24 +1,28 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { TaskList } from "../../components/TaskList/TaskList";
-import { TaskEditor } from "../../components/TaskEditor/TaskEditor";
-import { fetchTasks } from "../../redux/tasks/operations";
-import { selectLoading } from "../../redux/tasks/selectors";
+import { useDispatch } from "react-redux";
+
+import { fetchContacts } from "../../redux/contacts/oparations";
+import ContactForm from "../../components/ContactForm/ContactForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import ContactList from "../../components/ContactList/ContactList";
 
 export default function TasksPage() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
 
   useEffect(() => {
-    dispatch(fetchTasks());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
-    <>
-      <title>Your tasks</title>
-      <TaskEditor />
-      <div>{isLoading && "Request in progress..."}</div>
-      <TaskList />
-    </>
+    <ul>
+      <li>
+        <h1>Phonebook</h1>
+        <ContactForm />
+        <SearchBox />
+      </li>
+      <li>
+        <ContactList />
+      </li>
+    </ul>
   );
 }
