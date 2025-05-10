@@ -17,7 +17,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (values, options) => {
     try {
-      const res = await dispatch(register(values)).unwrap();
+      const res = await dispatch(register(values));
 
       navigate("/contacts");
     } catch (error) {
