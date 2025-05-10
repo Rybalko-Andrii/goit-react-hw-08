@@ -21,6 +21,7 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      console.error("Error response:", error.response);
       return rejectWithValue(
         error.response?.data?.message || "Registration failed"
       );
