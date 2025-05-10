@@ -15,50 +15,52 @@ const clearAuthHeader = () => {
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (credentials, thunkAPI) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const res = await goitAPI.post("/users/signup", credentials);
-
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(
+        error.response?.data?.message || "Registration failed"
+      );
     }
   }
 );
 
 export const logIn = createAsyncThunk(
   "auth/login",
-  async (credentials, thunkAPI) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const res = await goitAPI.post("/users/login", credentials);
-
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.message || "Login failed");
     }
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
-  try {
-    await goitAPI.post("/users/logout");
-
-    clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const logOut = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      await goitAPI.post("/users/logout");
+      clearAuthHeader();
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || "Logout failed");
+    }
   }
-});
+);
 
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState();
     const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+    if (!persistedToken) {
+      return rejectWithValue("Unable to fetch user");
     }
 
     try {
@@ -66,7 +68,7 @@ export const refreshUser = createAsyncThunk(
       const res = await goitAPI.get("/users/current");
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.message || "Refresh failed");
     }
   }
 );

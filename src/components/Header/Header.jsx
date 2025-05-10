@@ -9,7 +9,6 @@ const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <header>
-      <h2>Auth</h2>
       {isLoggedIn && <h2>{user.name}</h2>}
       <nav>
         <NavLink to="/">Home</NavLink>

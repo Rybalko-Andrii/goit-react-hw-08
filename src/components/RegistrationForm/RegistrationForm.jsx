@@ -16,13 +16,10 @@ const RegisterForm = () => {
   };
   return (
     <div>
+      <Link to="/">Back to Home</Link>
       <div>
         <div>
           <h1>Register now!</h1>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia sequi
-            exercira necessitatibus perspiciatis!
-          </p>
         </div>
         <div>
           <div>
@@ -45,7 +42,7 @@ const RegisterForm = () => {
                     placeholder="Password"
                     autoComplete="current-password"
                   />
-                  <Link to="/login">You already have account?Sign in!</Link>
+                  <Link to="/login">Sign in!</Link>
                   <button type="submit">Register</button>
                 </fieldset>
               </Form>

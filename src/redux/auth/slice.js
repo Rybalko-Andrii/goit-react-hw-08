@@ -11,7 +11,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    error: null, // Додано поле для зберігання помилок
+    error: null,
   },
   extraReducers: (builder) => {
     builder
@@ -19,10 +19,10 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.error = null; // Якщо реєстрація пройшла успішно, очищуємо помилки
+        state.error = null;
       })
       .addCase(register.rejected, (state, action) => {
-        state.error = action.payload || "Failed to register"; // Додаємо обробку помилок
+        state.error = action.payload || "Failed to register";
       })
 
       .addCase(logIn.fulfilled, (state, action) => {
@@ -42,7 +42,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logOut.rejected, (state) => {
-        state.error = "Failed to log out"; // Додаємо обробку помилок
+        state.error = "Failed to log out";
       })
 
       .addCase(refreshUser.pending, (state) => {
@@ -57,7 +57,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        state.error = action.payload || "Failed to refresh user"; // Додаємо помилки
+        state.error = action.payload || "Failed to refresh user";
       });
   },
 });
