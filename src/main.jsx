@@ -7,10 +7,8 @@ import { persistor, store } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 
-// Створюємо корінь додатку
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// Використовуємо новий метод render
 root.render(
   <StrictMode>
     <BrowserRouter>
