@@ -14,7 +14,7 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <section>
+    <section className="flex items-center justify-center h-screen">
       <ul>
         <li>
           <ContactForm />

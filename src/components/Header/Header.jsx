@@ -11,7 +11,9 @@ const Header = () => {
     <header>
       {isLoggedIn && <h2>{user.name}</h2>}
       <nav>
-        <NavLink to="/">Home</NavLink>
+        <NavLink className="text-xs" to="/">
+          Home
+        </NavLink>
         <NavLink to="/contacts">Contacts</NavLink>
         {!isLoggedIn ? (
           <>

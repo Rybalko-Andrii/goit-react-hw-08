@@ -40,7 +40,7 @@ const ContactForm = () => {
 
     actions.resetForm();
   };
-
+  /* className = "flex items-center justify-center h-screen"; */
   return (
     <Formik
       validationSchema={FormSchema}
