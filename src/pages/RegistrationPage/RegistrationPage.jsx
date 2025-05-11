@@ -3,7 +3,7 @@ import RegistrationForm from "../../components/RegistrationForm/RegistrationForm
 
 const RegistrationPage = () => {
   return (
-    <section>
+    <section className="flex items-center justify-center h-screen">
       <RegistrationForm />
     </section>
   );
