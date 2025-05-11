@@ -1,20 +1,37 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectError,
+  selectFilteredContacts,
+  selectLoading,
+} from "../../redux/contacts/selectors";
+import { deleteContact } from "../../redux/contacts/operations";
+import Loader from "../Loader/Loader";
+
 import Contact from "../Contact/Contact";
-import s from "./ContactList.module.css";
-import { useSelector } from "react-redux";
-import { selectFilteredContacts } from "../../redux/filters/selectors";
 
 const ContactList = () => {
+  const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
+  const isLoading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  const handleDeleteContact = (id) => {
+    dispatch(deleteContact(id));
+  };
 
   return (
-    <ul className={s.ul}>
-      {filteredContacts.map((contact) => (
-        <li className={s.li} key={contact.id}>
-          <Contact contact={contact} />
-        </li>
-      ))}
-    </ul>
+    <>
+      {isLoading && !error && <Loader />}
+
+      <ul>
+        {filteredContacts.map((contact) => (
+          <li key={contact.id}>
+            <Contact contact={contact} onDelete={handleDeleteContact} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

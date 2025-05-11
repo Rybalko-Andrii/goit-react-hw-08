@@ -1,63 +1,84 @@
-import { Field, Form, Formik } from "formik";
+import React, { useId } from "react";
+
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { logIn } from "../../redux/auth/operations";
-import { useState } from "react";
+import { login } from "../../redux/auth/operations";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const [error, setError] = useState("");
 
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+  const email = useId();
+  const password = useId();
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string().min(7, "Minimum 7 characters").required("Required"),
+  });
+
+  const handleSubmit = async (values, actions) => {
     try {
-      await dispatch(logIn(values)).unwrap();
-      resetForm();
-      setError("");
-    } catch (error) {
-      setError("Invalid email or password. Please try again.");
+      await dispatch(
+        login({
+          email: values.email,
+          password: values.password,
+        })
+      ).unwrap();
+
+      actions.resetForm();
+    } catch (errors) {
+      const formattedErrors = {};
+
+      if (errors.email) {
+        formattedErrors.email = errors.email.message;
+      }
+      if (errors.password) {
+        formattedErrors.password = errors.password.message;
+      }
+
+      actions.setErrors(formattedErrors);
     }
   };
 
   return (
-    <div>
-      <div>
-        <h1>Login now!</h1>
-      </div>
-
-      {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
-
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      validationSchema={LoginSchema}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+    >
+      {({ isValid, dirty }) => (
         <Form>
-          <fieldset>
-            <label>Email</label>
-            <Field
-              name="email"
-              type="email"
-              placeholder="Email"
-              autoComplete="email"
-            />
-            <label>Password</label>
-            <Field
-              name="password"
-              type="password"
-              placeholder="Password"
-              autoComplete="current-password"
-            />
-            <div>
-              <Link to="/register">Sign UP!</Link>
-            </div>
-            <button type="submit">Login</button>
-          </fieldset>
-        </Form>
-      </Formik>
+          <label htmlFor={email}>Email:</label>
+          <Field
+            type="text"
+            name="email"
+            id={email}
+            placeholder="Enter your email here"
+            autoComplete="current-password"
+          />
+          <ErrorMessage name="email" component="span" />
 
-      <Link to="/">Back to Home</Link>
-    </div>
+          <label htmlFor={password}>Password:</label>
+          <Field
+            type="password"
+            name="password"
+            id={password}
+            placeholder="Enter your password here"
+            autoComplete="current-password"
+          />
+          <ErrorMessage name="password" component="span" />
+
+          <button type="submit" disabled={!isValid || !dirty}>
+            Login
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

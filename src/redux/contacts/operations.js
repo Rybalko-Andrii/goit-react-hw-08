@@ -1,40 +1,73 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { createAsyncThunk } from "@reduxjs/toolkit";
-axios.defaults.baseURL = "https://68135a4e129f6313e21102e5.mockapi.io";
+axios.defaults.baseURL = "https://connections-api.goit.global/";
+
+const setAuthHeader = (token) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const prepareAuth = (thunkAPI) => {
+  const state = thunkAPI.getState();
+  const token = state.auth.token;
+  if (!token) throw new Error("No token");
+  setAuthHeader(token);
+};
 
 export const fetchContacts = createAsyncThunk(
-  "fetchContacts",
+  "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/contacts`);
+      prepareAuth(thunkAPI);
+      const response = await axios.get("/contacts");
       return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const deleteContact = createAsyncThunk(
-  "deleteContact",
-  async (id, thunkAPI) => {
-    try {
-      await axios.delete(`/contacts/${id}`);
-      return id;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
 export const addContact = createAsyncThunk(
-  "addContact",
-  async (body, thunkAPI) => {
+  "contacts/addContact",
+  async (newContact, thunkAPI) => {
     try {
-      const response = await axios.post(`/contacts`, body);
+      prepareAuth(thunkAPI);
+      const response = await axios.post("/contacts", newContact);
+
       return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deleteContact = createAsyncThunk(
+  "contacts/deleteContact",
+  async (contactId, thunkAPI) => {
+    try {
+      prepareAuth(thunkAPI);
+      const response = await axios.delete(`/contacts/${contactId}`);
+
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async (contact, thunkAPI) => {
+    try {
+      prepareAuth(thunkAPI);
+      const response = await axios.patch(`/contacts/${contact.id}`, {
+        name: contact.name,
+        number: contact.number,
+      });
+
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

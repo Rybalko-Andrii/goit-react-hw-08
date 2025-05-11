@@ -1,80 +1,98 @@
-import { Field, Form, Formik } from "formik";
+import React, { useId } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../redux/auth/operations";
-import { useState } from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
 
-const RegisterForm = () => {
+const initialValues = {
+  userName: "",
+  email: "",
+  password: "",
+};
+
+const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
 
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-  };
+  const userName = useId();
+  const email = useId();
+  const password = useId();
 
-  const handleSubmit = async (values, options) => {
+  const RegistrationSchema = Yup.object().shape({
+    userName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string().min(7, "Minimum 7 characters").required("Required"),
+  });
+
+  const handleSubmit = async (values, actions) => {
     try {
-      const res = await dispatch(register(values));
+      await dispatch(
+        register({
+          name: values.userName,
+          email: values.email,
+          password: values.password,
+        })
+      ).unwrap();
 
-      navigate("/contacts");
-    } catch (error) {
-      if (error.message.includes("duplicate key error collection")) {
-        setErrorMessage(
-          "This email is already registered. Please try another one."
-        );
-      } else {
-        setErrorMessage("Registration failed: " + error.message);
+      actions.resetForm();
+    } catch (errors) {
+      const formattedErrors = {};
+
+      if (errors.name) {
+        formattedErrors.userName = errors.name.message;
       }
+      if (errors.email) {
+        formattedErrors.email = errors.email.message;
+      }
+      if (errors.password) {
+        formattedErrors.password = errors.password.message;
+      }
+
+      actions.setErrors(formattedErrors);
     }
   };
 
   return (
-    <div>
-      <Link to="/">Back to Home</Link>
-      <div>
-        <div>
-          <h1>Register now!</h1>
-        </div>
-        <div>
-          <div>
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-              <Form>
-                <fieldset>
-                  <label>Name</label>
-                  <Field name="name" type="name" placeholder="Name" />
-                  <label>Email</label>
-                  <Field
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    autoComplete="email"
-                  />
-                  <label className="label">Password</label>
-                  <Field
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    autoComplete="current-password"
-                  />
-                  {errorMessage && (
-                    <div style={{ color: "red", marginTop: "10px" }}>
-                      {errorMessage}
-                    </div>
-                  )}
-                  <Link to="/login">Sign in!</Link>
-                  <button type="submit">Register</button>
-                </fieldset>
-              </Form>
-            </Formik>
-            <div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Formik
+      validationSchema={RegistrationSchema}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+    >
+      {({ isValid, dirty }) => (
+        <Form>
+          <label htmlFor={userName}>Name:</label>
+          <Field
+            type="text"
+            name="userName"
+            id={userName}
+            placeholder="Name"
+            autoComplete="current-password"
+          />
+          <ErrorMessage name="userName" component="span" />
+
+          <label htmlFor={email}>Email:</label>
+          <Field type="text" name="email" id={email} placeholder="Email" />
+          <ErrorMessage name="email" component="span" />
+
+          <label htmlFor={password}>Password:</label>
+          <Field
+            type="password"
+            name="password"
+            id={password}
+            placeholder="Password"
+            autoComplete="current-password"
+          />
+          <ErrorMessage name="password" component="span" />
+
+          <button type="submit" disabled={!isValid || !dirty}>
+            Register
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
-export default RegisterForm;
+export default RegistrationForm;

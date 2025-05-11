@@ -1,54 +1,28 @@
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
 
-import SharedLayout from "../SharedLayout/SharedLayout";
-import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../../redux/auth/operations";
-
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import RestrictedRoute from "../RestrictRoute/RestrictRoute";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 
-const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
-const RegistrationPage = lazy(() =>
-  import("../../pages/RegistrationPage/RegistrationPage")
-);
-const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
-const ContactsPage = lazy(() =>
-  import("../../pages/ContactsPage/ContactsPage")
-);
+import Layout from "../Layout/Layout";
+import RoutresSet from "../RoutersSet/RoutersSet";
+import Loader from "../Loader/Loader";
 
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  return isRefreshing ? null : (
+
+  return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute>
-                <ContactsPage />
-              </PrivateRoute>
-            }
-          />
-        </Route>
-
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
-          }
-        />
-
-        <Route path="/register" element={<RegistrationPage />} />
-      </Routes>
+      {isRefreshing && <Loader />}
+      <Layout />
+      <RoutresSet />
     </>
   );
 };
+
 export default App;
