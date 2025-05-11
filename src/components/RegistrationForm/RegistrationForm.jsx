@@ -62,7 +62,55 @@ const RegistrationForm = () => {
     >
       {({ isValid, dirty }) => (
         <Form>
-          <label htmlFor={userName}>Name:</label>
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+            <legend className="fieldset-legend">Register</legend>
+
+            <label htmlFor={userName} className="label">
+              Name
+            </label>
+            <Field
+              className="input"
+              type="text"
+              name="userName"
+              id={email}
+              placeholder="Name"
+              autoComplete="current-password"
+            />
+
+            <label htmlFor={email} className="label">
+              Email
+            </label>
+            <Field
+              className="input"
+              type="text"
+              name="email"
+              id={email}
+              placeholder="Email"
+              autoComplete="current-password"
+            />
+
+            <label htmlFor={password} className="label">
+              Password
+            </label>
+            <Field
+              className="input"
+              type="password"
+              name="password"
+              id={password}
+              placeholder="Password"
+              autoComplete="current-password"
+            />
+
+            <button
+              type="submit"
+              disabled={!isValid || !dirty}
+              className="btn btn-neutral mt-4"
+            >
+              Login
+            </button>
+          </fieldset>
+
+          {/* <label htmlFor={userName}>Name:</label>
           <Field
             type="text"
             name="userName"
@@ -88,7 +136,7 @@ const RegistrationForm = () => {
 
           <button type="submit" disabled={!isValid || !dirty}>
             Register
-          </button>
+          </button> */}
         </Form>
       )}
     </Formik>

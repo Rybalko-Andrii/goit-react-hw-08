@@ -53,29 +53,41 @@ const LoginForm = () => {
     >
       {({ isValid, dirty }) => (
         <Form>
-          <label htmlFor={email}>Email:</label>
-          <Field
-            type="text"
-            name="email"
-            id={email}
-            placeholder="Enter your email here"
-            autoComplete="current-password"
-          />
-          <ErrorMessage name="email" component="span" />
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+            <legend className="fieldset-legend">Login</legend>
 
-          <label htmlFor={password}>Password:</label>
-          <Field
-            type="password"
-            name="password"
-            id={password}
-            placeholder="Enter your password here"
-            autoComplete="current-password"
-          />
-          <ErrorMessage name="password" component="span" />
+            <label htmlFor={email} className="label">
+              Email
+            </label>
+            <Field
+              className="input"
+              type="text"
+              name="email"
+              id={email}
+              placeholder="Enter your email here"
+              autoComplete="current-password"
+            />
 
-          <button type="submit" disabled={!isValid || !dirty}>
-            Login
-          </button>
+            <label htmlFor={password} className="label">
+              Password
+            </label>
+            <Field
+              className="input"
+              type="password"
+              name="password"
+              id={password}
+              placeholder="Enter your password here"
+              autoComplete="current-password"
+            />
+
+            <button
+              type="submit"
+              disabled={!isValid || !dirty}
+              className="btn btn-neutral mt-4"
+            >
+              Login
+            </button>
+          </fieldset>
         </Form>
       )}
     </Formik>
