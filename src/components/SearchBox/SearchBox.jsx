@@ -12,15 +12,21 @@ const SearchBox = () => {
   };
 
   return (
-    <div>
-      <label htmlFor={filterId}>Find contacts by name or phome</label>
-      <input
-        type="text"
-        name="filter"
-        id="filterId"
-        onChange={(e) => onFilter(e.target.value)}
-      />
-    </div>
+    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <legend className="fieldset-legend">
+        Find contacts by name or phome
+      </legend>
+      <div className="join">
+        <input
+          type="text"
+          className="input join-item"
+          name="filter"
+          id="filterId"
+          onChange={(e) => onFilter(e.target.value)}
+        />
+        <button className="btn join-item">Find</button>
+      </div>
+    </fieldset>
   );
 };
 

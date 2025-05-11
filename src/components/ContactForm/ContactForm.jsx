@@ -50,20 +50,33 @@ const ContactForm = () => {
     >
       {({ isValid, dirty, touched, errors }) => (
         <Form>
-          <div>
-            <label htmlFor={nameId}>Name</label>
-            <Field type="text" name="name" id={nameId} />
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+            <label htmlFor={nameId} className="label">
+              Name
+            </label>
+            <Field className="input" type="text" name="name" id={nameId} />
             {touched.name && errors.name && <span>{errors.name}</span>}
-          </div>
-          <div>
-            <label htmlFor={numberId}>Number</label>
-            <Field type="text" name="number" id={numberId} placeholder="+380" />
-            {touched.number && errors.number && <span>{errors.number}</span>}
-          </div>
 
-          <button type="submit" disabled={!isValid || !dirty}>
-            Add contact
-          </button>
+            <label htmlFor={numberId} className="label">
+              Phone number
+            </label>
+            <Field
+              className="input"
+              type="text"
+              name="number"
+              id={numberId}
+              placeholder="+380"
+            />
+            {touched.number && errors.number && <span>{errors.number}</span>}
+
+            <button
+              className="btn btn-neutral mt-4"
+              type="submit"
+              disabled={!isValid || !dirty}
+            >
+              Add contact
+            </button>
+          </fieldset>
         </Form>
       )}
     </Formik>

@@ -1,6 +1,7 @@
 import React from "react";
-import s from "./Loader.module.css";
 
-const Loader = () => <div className={s.loader}></div>;
+const Loader = () => (
+  <span className="loading loading-spinner loading-sm"></span>
+);
 
 export default Loader;
