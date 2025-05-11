@@ -24,7 +24,7 @@ const ContactList = () => {
     <>
       {isLoading && !error && <Loader />}
 
-      <ul>
+      <ul class="grid grid-cols-3 gap-4">
         {filteredContacts.map((contact) => (
           <li key={contact.id}>
             <Contact contact={contact} onDelete={handleDeleteContact} />

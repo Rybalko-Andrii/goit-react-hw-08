@@ -12,10 +12,15 @@ const UserMenu = () => {
     dispatch(logout());
   };
   return (
-    <>
-      <p>Hello, {userName}</p>
-      <button onClick={handleLogOut}>Log Out</button>
-    </>
+    <div className="flex gap-4">
+      <p class="pt-4 text-xl">Hello, {userName}</p>
+      <button
+        className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+        onClick={handleLogOut}
+      >
+        Log Out
+      </button>
+    </div>
   );
 };
 

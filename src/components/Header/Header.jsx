@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { logOut } from "../../redux/auth/operations";
+import s from "./Header.module.css";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -11,9 +12,7 @@ const Header = () => {
     <header>
       {isLoggedIn && <h2>{user.name}</h2>}
       <nav>
-        <NavLink className="text-xs" to="/">
-          Home
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
         <NavLink to="/contacts">Contacts</NavLink>
         {!isLoggedIn ? (
           <>
@@ -21,7 +20,9 @@ const Header = () => {
             <NavLink to="/register">Register</NavLink>
           </>
         ) : (
-          <button onClick={() => dispatch(logOut())}>Logout</button>
+          <button className="bg-red-950" onClick={() => dispatch(logOut())}>
+            Logout
+          </button>
         )}
       </nav>
     </header>

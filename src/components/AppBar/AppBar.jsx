@@ -10,8 +10,8 @@ const AppBar = () => {
   const isLogged = useSelector(selectIsLoggedIn);
 
   return (
-    <nav>
-      <ul>
+    <nav className="justify-between">
+      <ul className="flex justify-between">
         <li>
           <Navigation />
         </li>

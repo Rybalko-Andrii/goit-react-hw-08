@@ -24,7 +24,7 @@ const SearchBox = () => {
           id="filterId"
           onChange={(e) => onFilter(e.target.value)}
         />
-        <button className="btn join-item">Find</button>
+        <button className="btn btn-soft">Find</button>
       </div>
     </fieldset>
   );

@@ -3,7 +3,7 @@ import AppBar from "../AppBar/AppBar";
 
 const Layout = () => {
   return (
-    <header>
+    <header className=" bg-gray-800 text-white p-2 mb-10">
       <AppBar />
     </header>
   );
