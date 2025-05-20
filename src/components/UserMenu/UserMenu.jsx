@@ -12,7 +12,7 @@ const UserMenu = () => {
     dispatch(logout());
   };
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex flex-col sm:flex-row gap-2 items-center mt-4 sm:mt-0">
       <p className=" text-sm sm:text-base md:text-lg text-black">
         Hello, {userName}
       </p>
