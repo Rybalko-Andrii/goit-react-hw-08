@@ -9,9 +9,9 @@ const Header = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <header className="block">
+    <header>
       {isLoggedIn && <h2>{user.name}</h2>}
-      <nav className="block">
+      <nav>
         <div>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/contacts">Contacts</NavLink>
