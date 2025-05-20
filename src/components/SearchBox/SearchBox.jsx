@@ -12,14 +12,14 @@ const SearchBox = () => {
   };
 
   return (
-    <fieldset className="fieldset bg-base-200/70 border-base-300 rounded-box w-2xs md:w-xs border p-4">
+    <fieldset className="fieldset bg-base-200/50 border-base-300 rounded-box w-2xs md:w-xs border p-4">
       <legend className="fieldset-legend">
         Find contacts by name or phome
       </legend>
       <div className="join">
         <input
           type="text"
-          className="input join-item h-8 md:h-10 rounded-l-xl"
+          className="input join-item h-8 md:h-10 rounded-l-xl opacity-70"
           name="filter"
           id="filterId"
           onChange={(e) => onFilter(e.target.value)}

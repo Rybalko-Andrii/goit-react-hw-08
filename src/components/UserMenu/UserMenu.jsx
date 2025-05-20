@@ -12,10 +12,8 @@ const UserMenu = () => {
     dispatch(logout());
   };
   return (
-    <div className="flex flex-col sm:flex-row gap-2 items-center mt-4 sm:mt-0">
-      <p className=" text-sm sm:text-base md:text-lg text-black">
-        Hello, {userName}
-      </p>
+    <div className="flex  sm:flex-row gap-2 items-center">
+      <p className=" text-sm sm:text-base md:text-lg text-black">{userName}</p>
       <button
         className="cursor-pointer border border-white-500 text-white-500 bg-transparent 
        px-4 py-2 text-sm 

@@ -62,14 +62,14 @@ const RegistrationForm = () => {
     >
       {({ isValid, dirty }) => (
         <Form>
-          <fieldset className="fieldset bg-base-200/70 border-base-300 rounded-box w-2xs md:w-xs border p-4">
+          <fieldset className="fieldset bg-base-200/50 border-base-300 rounded-box w-2xs md:w-xs border p-4">
             <legend className="fieldset-legend">Register</legend>
 
             <label htmlFor={userName} className="label">
               Name
             </label>
             <Field
-              className="input h-8 md:h-10 rounded-xl"
+              className="input h-8 md:h-10 rounded-xl opacity-70"
               type="text"
               name="userName"
               id={email}
@@ -81,7 +81,7 @@ const RegistrationForm = () => {
               Email
             </label>
             <Field
-              className="input h-8 md:h-10 rounded-xl"
+              className="input h-8 md:h-10 rounded-xl opacity-70"
               type="text"
               name="email"
               id={email}
@@ -93,7 +93,7 @@ const RegistrationForm = () => {
               Password
             </label>
             <Field
-              className="input h-8 md:h-10 rounded-xl"
+              className="input h-8 md:h-10 rounded-xl opacity-70"
               type="password"
               name="password"
               id={password}

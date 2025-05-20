@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = ({ contact: { name, number, id }, onDelete }) => {
   return (
-    <div className="bg-base-200/70 w-2xs md:w-50 rounded-lg p-3 shadow-sm  text-sm">
+    <div className="bg-base-200/50 w-2xs md:w-50 rounded-lg p-3 shadow-sm  text-sm">
       <div className="flex justify-between items-start mb-2">
         <div>
           <p className="font-medium">{name}</p>

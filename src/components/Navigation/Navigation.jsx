@@ -8,7 +8,7 @@ const Navigation = () => {
   const isLogged = useSelector(selectIsLoggedIn);
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2">
+    <div className="flex  gap-2">
       <NavLink
         className="border border-white-500 text-white-500 bg-transparent 
         px-4 py-2 text-sm 
