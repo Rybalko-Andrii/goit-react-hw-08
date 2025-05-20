@@ -106,7 +106,7 @@ const RegistrationForm = () => {
               disabled={!isValid || !dirty}
               className="btn btn-neutral mt-4 rounded-xl"
             >
-              Login
+              Register
             </button>
           </fieldset>
         </Form>

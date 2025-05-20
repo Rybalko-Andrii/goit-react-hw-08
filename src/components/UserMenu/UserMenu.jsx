@@ -13,7 +13,7 @@ const UserMenu = () => {
   };
   return (
     <div className="flex gap-2 items-center">
-      <p class=" text-sm sm:text-base md:text-lg text-black">
+      <p className=" text-sm sm:text-base md:text-lg text-black">
         Hello, {userName}
       </p>
       <button
