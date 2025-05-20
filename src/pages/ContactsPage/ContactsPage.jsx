@@ -14,8 +14,8 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <section className="px-4">
-      <ul className="block  gap-4 sm:flex ">
+    <section className="px-4 ">
+      <ul className="flex flex-col items-center gap-4 sm:flex-row sm:items-start sm:justify-start">
         <li className="mb-4">
           <ContactForm />
           <SearchBox />
