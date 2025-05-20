@@ -60,7 +60,7 @@ const LoginForm = () => {
               Email
             </label>
             <Field
-              className="input"
+              className="input h-8 md:h-10 rounded-xl"
               type="text"
               name="email"
               id={email}
@@ -72,7 +72,7 @@ const LoginForm = () => {
               Password
             </label>
             <Field
-              className="input"
+              className="input h-8 md:h-10 rounded-xl"
               type="password"
               name="password"
               id={password}
@@ -83,7 +83,7 @@ const LoginForm = () => {
             <button
               type="submit"
               disabled={!isValid || !dirty}
-              className="btn btn-neutral mt-4"
+              className="btn btn-neutral mt-4 rounded-xl"
             >
               Login
             </button>

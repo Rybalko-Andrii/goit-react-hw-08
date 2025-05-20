@@ -19,12 +19,12 @@ const SearchBox = () => {
       <div className="join">
         <input
           type="text"
-          className="input join-item"
+          className="input join-item h-8 md:h-10 rounded-l-xl"
           name="filter"
           id="filterId"
           onChange={(e) => onFilter(e.target.value)}
         />
-        <button className="btn btn-soft">Find</button>
+        <button className="btn btn-soft h-8 md:h-10 rounded-r-xl">Find</button>
       </div>
     </fieldset>
   );

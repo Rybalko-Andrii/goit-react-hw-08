@@ -50,18 +50,23 @@ const ContactForm = () => {
     >
       {({ isValid, dirty, touched, errors }) => (
         <Form>
-          <fieldset className="fieldset bg-base-200/70 border-base-300 rounded-box w-2xs md:w-xs border p-4">
+          <fieldset className="fieldset bg-base-200/70 border-base-300 rounded-box  w-2xs md:w-xs border p-4">
             <label htmlFor={nameId} className="label">
               Name
             </label>
-            <Field className="input" type="text" name="name" id={nameId} />
+            <Field
+              className="input h-8 md:h-10 rounded-xl"
+              type="text"
+              name="name"
+              id={nameId}
+            />
             {touched.name && errors.name && <span>{errors.name}</span>}
 
             <label htmlFor={numberId} className="label">
               Phone number
             </label>
             <Field
-              className="input"
+              className="input h-8 md:h-10 rounded-xl"
               type="text"
               name="number"
               id={numberId}
@@ -70,7 +75,7 @@ const ContactForm = () => {
             {touched.number && errors.number && <span>{errors.number}</span>}
 
             <button
-              className="btn btn-neutral mt-4"
+              className="btn btn-neutral mt-4 h-8 md:h-10 rounded-xl"
               type="submit"
               disabled={!isValid || !dirty}
             >

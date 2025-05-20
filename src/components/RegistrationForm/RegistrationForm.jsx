@@ -69,7 +69,7 @@ const RegistrationForm = () => {
               Name
             </label>
             <Field
-              className="input"
+              className="input h-8 md:h-10 rounded-xl"
               type="text"
               name="userName"
               id={email}
@@ -81,7 +81,7 @@ const RegistrationForm = () => {
               Email
             </label>
             <Field
-              className="input"
+              className="input h-8 md:h-10 rounded-xl"
               type="text"
               name="email"
               id={email}
@@ -93,7 +93,7 @@ const RegistrationForm = () => {
               Password
             </label>
             <Field
-              className="input"
+              className="input h-8 md:h-10 rounded-xl"
               type="password"
               name="password"
               id={password}
@@ -104,39 +104,11 @@ const RegistrationForm = () => {
             <button
               type="submit"
               disabled={!isValid || !dirty}
-              className="btn btn-neutral mt-4"
+              className="btn btn-neutral mt-4 rounded-xl"
             >
               Login
             </button>
           </fieldset>
-
-          {/* <label htmlFor={userName}>Name:</label>
-          <Field
-            type="text"
-            name="userName"
-            id={userName}
-            placeholder="Name"
-            autoComplete="current-password"
-          />
-          <ErrorMessage name="userName" component="span" />
-
-          <label htmlFor={email}>Email:</label>
-          <Field type="text" name="email" id={email} placeholder="Email" />
-          <ErrorMessage name="email" component="span" />
-
-          <label htmlFor={password}>Password:</label>
-          <Field
-            type="password"
-            name="password"
-            id={password}
-            placeholder="Password"
-            autoComplete="current-password"
-          />
-          <ErrorMessage name="password" component="span" />
-
-          <button type="submit" disabled={!isValid || !dirty}>
-            Register
-          </button> */}
         </Form>
       )}
     </Formik>
