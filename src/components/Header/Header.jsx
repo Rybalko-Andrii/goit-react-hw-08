@@ -9,20 +9,21 @@ const Header = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <header>
+    <header className="block">
       {isLoggedIn && <h2>{user.name}</h2>}
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/contacts">Contacts</NavLink>
+      <nav className="block">
+        <div>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/contacts">Contacts</NavLink>
+        </div>
+
         {!isLoggedIn ? (
-          <>
+          <div>
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/register">Register</NavLink>
-          </>
+          </div>
         ) : (
-          <button className="bg-red-950" onClick={() => dispatch(logOut())}>
-            Logout
-          </button>
+          <button onClick={() => dispatch(logOut())}>Logout</button>
         )}
       </nav>
     </header>

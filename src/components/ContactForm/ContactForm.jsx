@@ -50,7 +50,7 @@ const ContactForm = () => {
     >
       {({ isValid, dirty, touched, errors }) => (
         <Form>
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+          <fieldset className="fieldset bg-base-200/70 border-base-300 rounded-box w-2xs md:w-xs border p-4">
             <label htmlFor={nameId} className="label">
               Name
             </label>

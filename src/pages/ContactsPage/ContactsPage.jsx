@@ -14,9 +14,9 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <section>
-      <ul className=" ml-4">
-        <li>
+    <section className="px-4">
+      <ul className="block  gap-4 sm:flex ">
+        <li className="mb-4">
           <ContactForm />
           <SearchBox />
         </li>
