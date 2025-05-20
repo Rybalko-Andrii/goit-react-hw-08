@@ -17,7 +17,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="h-screen bg-[url('/img/bg-img.webp')] bg-cover bg-center">
+    <div className="min-h-screen bg-[url('/img/bg-img.webp')] bg-cover bg-center bg-fixed">
       {isRefreshing && <Loader />}
       <Layout />
       <RoutresSet />
