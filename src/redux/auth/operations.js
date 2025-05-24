@@ -14,6 +14,7 @@ const clearAuthHeader = () => {
 const prepareAuth = (thunkAPI) => {
   const state = thunkAPI.getState();
   const token = state.auth.token;
+  /* console.log("Preparing auth, token:", token); */
   if (!token) throw new Error("No token");
   setAuthHeader(token);
 };
